@@ -13,7 +13,7 @@ title                    : "Jacob Hines"
 title_separator          : "-"
 name                     : &name "Jacob Hines"
 description              : &description "Camera Systems Architect at Apple. Former quantum physics researcher at Stanford."
-url                      : https://jacobhines.github.io
+url                      : https://www.hines.dev
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "jacobhines/jacobhines.github.io"
 
