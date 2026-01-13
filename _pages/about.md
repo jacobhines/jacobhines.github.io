@@ -15,7 +15,7 @@ I was previously a PhD student and postdoctoral researcher at Stanford Universit
 * **[Quantum computing:](https://doi.org/10.1103/PRXQuantum.2.020319)** Proposed a physical implementation of Grover's search algorithm that encodes the NP-complete number partitioning problem in couplings to a central spin, providing quantum speedup without requiring prior knowledge of solutions.
 
 Alongside my quantum physics research, I was involved in Stanford's optics community, earning an MS in Electrical Engineering with coursework focused on laser physics and computational imaging. This led to several sensing-related side projects:
-* **[Visualizing breath:](/projects/visualizing-breath)** Proposed and built Schlieren imaging systems for the Exploratorium and Stanford Ophthalmology to visualize exhaled breath plumes and study face-mask airflow, informing public education and clinical safety guidelines during COVID-19.
+* **[Visualizing breath:](/projects/visualizing-breath)** Proposed and built Schlieren imaging systems for the Exploratorium and Stanford Ophthalmology to visualize exhaled breath plumes and study face-mask airflow, informing public education and clinical safety guidelines during <nobr>COVID-19</nobr>.
 * **Apple Biophotonics internship:** Developed an OCT-inspired sensing platform to measure optical path length distributions in scattering media, featuring an optical heterodyne modulation scheme compatible with the coherent detection of speckle-field signals.
 * **[Multispectral camera:](/projects/multispectral-camera)** Designed and built a low-cost multispectral camera that uses a high-resolution visible image to enhance a low-resolution thermal image. Developed a multispectral image registration algorithm with VIS+LWIR image fusion.
 
