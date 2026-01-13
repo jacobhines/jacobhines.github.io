@@ -200,10 +200,23 @@
     color: #fff;
     cursor: pointer;
     z-index: 100;
+
+    // Show hamburger on mobile, hide on desktop
+    @media screen and (min-width: $medium) {
+      display: none;
+    }
   }
 
   .visible-links {
     display: table;
+
+    // Hide non-persist items on mobile, show on desktop
+    li:not(.persist) {
+      display: none;
+      @media screen and (min-width: $medium) {
+        display: table-cell;
+      }
+    }
 
     li {
       display: table-cell;
@@ -277,6 +290,11 @@
     box-shadow: 0 0 10px rgba(#000, 0.25);
     max-width: calc(100vw - 20px);
     min-width: 200px;
+
+    // Always hide on desktop
+    @media screen and (min-width: $medium) {
+      display: none !important;
+    }
 
     a {
       margin: 0;

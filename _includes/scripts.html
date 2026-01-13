@@ -1,142 +1,37 @@
-<script type="module" src="{{ base_path }}/assets/js/main.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
-// Override greedy navigation with "all or nothing" behavior
-(function() {
-  setTimeout(function() {
-    var $nav = $('#site-nav');
-    var $btn = $('#site-nav button');
-    var $vlinks = $('#site-nav .visible-links');
-    var $hlinks = $('#site-nav .hidden-links');
+$(function() {
+  var $btn = $('#site-nav button');
+  var $vlinks = $('#site-nav .visible-links');
+  var $hlinks = $('#site-nav .hidden-links');
 
-    // Reset navigation to initial state
-    while ($hlinks.children().length > 0) {
-      $hlinks.children().first().appendTo($vlinks);
+  // Copy non-persist items to hidden-links for hamburger menu
+  $vlinks.children('li:not(.persist)').each(function() {
+    $hlinks.append($(this).clone());
+  });
+
+  // Hamburger toggle
+  $btn.on('click', function() {
+    $hlinks.toggleClass('hidden');
+    $(this).toggleClass('close');
+    if (!$(this).hasClass('close')) {
+      $hlinks.find('.dropdown-menu').removeClass('is-open');
     }
+  });
 
-    // Store original order of non-persist items
-    var originalOrder = [];
-    $vlinks.children("*:not(.persist)").each(function(index) {
-      originalOrder.push($(this));
-    });
+  // Accordion toggle for dropdowns in hamburger
+  $(document).on('click', '.hidden-links .masthead__menu-item--dropdown > a', function(e) {
+    e.preventDefault();
+    $(this).siblings('.dropdown-menu').toggleClass('is-open');
+  });
 
-    function updateNavAllOrNothing() {
-      var navWidth = $nav.width();
-      var buffer = 50; // Add buffer to prevent flickering
-
-      // Check if items are currently hidden
-      var itemsHidden = $hlinks.children().length > 0;
-
-      if (itemsHidden) {
-        // Items are in hamburger - check if there's space to show all
-        // Restore items in original order after persist items
-        var persistItems = $vlinks.children(".persist");
-        var lastInserted = persistItems.length > 0 ? persistItems.last() : null;
-
-        originalOrder.forEach(function($item) {
-          if (lastInserted) {
-            $item.insertAfter(lastInserted);
-            lastInserted = $item;
-          } else {
-            $item.appendTo($vlinks);
-            lastInserted = $item;
-          }
-        });
-        $hlinks.empty();
-
-        var totalWidth = $vlinks.width();
-        var availableWithButton = navWidth - $btn.width() - 30 - buffer;
-
-        // Check if everything fits
-        if (totalWidth <= availableWithButton) {
-          // Keep items visible, hide button
-          $btn.addClass('hidden');
-          $btn.removeClass('close');
-          $hlinks.addClass('hidden');
-        } else {
-          // Move them back to hidden in reverse order (for prepending)
-          for (var i = originalOrder.length - 1; i >= 0; i--) {
-            originalOrder[i].prependTo($hlinks);
-          }
-          $btn.removeClass("hidden");
-        }
-      } else {
-        // Items are visible - check if they need to be hidden
-        var totalWidth = $vlinks.width();
-        var availableSpace = navWidth - buffer;
-
-        if (totalWidth > availableSpace) {
-          // Need to hide items - move all non-persist items in reverse order
-          for (var i = originalOrder.length - 1; i >= 0; i--) {
-            originalOrder[i].prependTo($hlinks);
-          }
-          $btn.removeClass("hidden");
-        }
-      }
-
-      $btn.attr("count", $hlinks.children().length);
-
-      var mastheadHeight = $('.masthead').height();
-      $('body').css('padding-top', mastheadHeight + 'px');
-    }
-
-    // Remove all existing resize handlers and add our own
-    $(window).off('resize');
-    $(window).on('resize', updateNavAllOrNothing);
-
-    // Initial update
-    updateNavAllOrNothing();
-
-    // Smart dropdown positioning to prevent overflow (for visible nav only)
-    function positionDropdown($parent) {
-      var $dropdown = $parent.find('.dropdown-menu');
-
-      // Reset to default left-aligned position first
-      $dropdown.css({'left': '0', 'right': 'auto'});
-
-      // Wait a frame for CSS to apply, then measure and reposition if needed
-      requestAnimationFrame(function() {
-        requestAnimationFrame(function() {
-          var dropdownRect = $dropdown[0].getBoundingClientRect();
-          var viewportWidth = window.innerWidth;
-          var gap = 10;
-
-          // Check if dropdown extends past right edge
-          if (dropdownRect.right > viewportWidth - gap) {
-            // Shift dropdown left so right edge is at viewport - gap
-            var overflow = dropdownRect.right - (viewportWidth - gap);
-            $dropdown.css({
-              'left': (-overflow) + 'px',
-              'right': 'auto'
-            });
-          }
-        });
-      });
-    }
-
-    // For visible nav: use hover with smart positioning (event delegation)
-    $(document).on('mouseenter', '.visible-links .masthead__menu-item--dropdown', function() {
-      positionDropdown($(this));
-    });
-    $(document).on('mouseleave', '.visible-links .masthead__menu-item--dropdown', function() {
-      $(this).find('.dropdown-menu').css({'left': '0', 'right': 'auto'});
-    });
-
-    // For hamburger menu: use click to toggle accordion-style
-    $(document).on('click', '.hidden-links .masthead__menu-item--dropdown > a', function(e) {
-      e.preventDefault();
-      var $dropdown = $(this).siblings('.dropdown-menu');
-      $dropdown.toggleClass('is-open');
-    });
-
-    // Close accordion when hamburger menu closes
-    $btn.on('click', function() {
-      if ($(this).hasClass('close')) {
-        // Menu is closing - reset accordion state
-        $('.hidden-links .dropdown-menu').removeClass('is-open');
-      }
-    });
-  }, 500);
-})();
+  // Update body padding for fixed masthead
+  function updatePadding() {
+    $('body').css('padding-top', $('.masthead').height() + 'px');
+  }
+  $(window).on('resize', updatePadding);
+  updatePadding();
+});
 </script>
 
 {% include analytics.html %}
