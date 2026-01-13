@@ -1,37 +1,35 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script>
-$(function() {
-  var $btn = $('#site-nav button');
-  var $vlinks = $('#site-nav .visible-links');
-  var $hlinks = $('#site-nav .hidden-links');
+{% raw %}<script>
+(function($) {
+  $(function() {
+    var $btn = $("#site-nav button");
+    var $vlinks = $("#site-nav .visible-links");
+    var $hlinks = $("#site-nav .hidden-links");
 
-  // Copy non-persist items to hidden-links for hamburger menu
-  $vlinks.children('li:not(.persist)').each(function() {
-    $hlinks.append($(this).clone());
-  });
+    $vlinks.children("li:not(.persist)").each(function() {
+      $hlinks.append($(this).clone());
+    });
 
-  // Hamburger toggle
-  $btn.on('click', function() {
-    $hlinks.toggleClass('hidden');
-    $(this).toggleClass('close');
-    if (!$(this).hasClass('close')) {
-      $hlinks.find('.dropdown-menu').removeClass('is-open');
+    $btn.on("click", function() {
+      $hlinks.toggleClass("hidden");
+      $(this).toggleClass("close");
+      if (!$(this).hasClass("close")) {
+        $hlinks.find(".dropdown-menu").removeClass("is-open");
+      }
+    });
+
+    $(document).on("click", ".hidden-links .masthead__menu-item--dropdown > a", function(e) {
+      e.preventDefault();
+      $(this).siblings(".dropdown-menu").toggleClass("is-open");
+    });
+
+    function updatePadding() {
+      $("body").css("padding-top", $(".masthead").height() + "px");
     }
+    $(window).on("resize", updatePadding);
+    updatePadding();
   });
-
-  // Accordion toggle for dropdowns in hamburger
-  $(document).on('click', '.hidden-links .masthead__menu-item--dropdown > a', function(e) {
-    e.preventDefault();
-    $(this).siblings('.dropdown-menu').toggleClass('is-open');
-  });
-
-  // Update body padding for fixed masthead
-  function updatePadding() {
-    $('body').css('padding-top', $('.masthead').height() + 'px');
-  }
-  $(window).on('resize', updatePadding);
-  updatePadding();
-});
-</script>
+})(jQuery);
+</script>{% endraw %}
 
 {% include analytics.html %}
