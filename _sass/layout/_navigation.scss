@@ -275,11 +275,15 @@
     border-radius: $border-radius;
     background: var(--global-bg-color);
     box-shadow: 0 0 10px rgba(#000, 0.25);
+    max-width: calc(100vw - 20px);
+    min-width: 200px;
 
     a {
       margin: 0;
       padding: 10px 20px;
       font-size: $type-size-5;
+      white-space: normal;
+      word-wrap: break-word;
 
       &:hover {
         color: var(--global-masthead-link-color-hover);
@@ -319,6 +323,38 @@
 
       &:last-child {
         border-bottom: none;
+      }
+    }
+
+    // Accordion-style nested menu within hamburger
+    .masthead__menu-item--dropdown {
+      .dropdown-menu {
+        display: none;
+        position: static;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        margin: 0;
+        padding: 0;
+        min-width: 0;
+
+        &.is-open {
+          display: block;
+        }
+
+        .dropdown-item {
+          background: rgba(0, 0, 0, 0.04);
+
+          a {
+            padding: 10px 20px;
+            font-size: $type-size-5;
+          }
+        }
+      }
+
+      &:hover .dropdown-menu,
+      .dropdown-menu.is-open {
+        display: block;
       }
     }
   }

@@ -12,6 +12,7 @@
 
   @include clearfix();
   margin-bottom: 1em;
+  padding-top: 0 !important;        // Override inline style from main.min.js on mobile
 
   @media (orientation: portrait) {
     margin-top: 1em;
@@ -21,7 +22,7 @@
     height: 100vh;
     overflow-y: auto;               // Add scrollbar if the sidebar is too long
     position: fixed;
-    padding-top: $masthead-height;
+    padding-top: $masthead-height !important;  // Override inline style on desktop
   }
 
   @include breakpoint($large) {
@@ -80,12 +81,35 @@
    Author profile and links
    ========================================================================== */
 
+.author__profile {
+  // Mobile: CSS grid layout - avatar left, content+links stacked right
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  grid-template-rows: auto auto;
+  gap: 0 15px;
+
+  .author__avatar {
+    grid-row: 1 / 3; // Span both rows
+  }
+
+  .author__content {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .author__urls-wrapper {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  @include breakpoint($large) {
+    display: block; // Revert to default on desktop
+  }
+}
+
 .author__avatar {
-  display: table-cell;
-  vertical-align: top;
-  width: 36px;
-  // set width only, for non-square avatars
-  // height: 36px;
+  // Grid handles positioning on mobile
+  width: 70px;
 
   @include breakpoint($large) {
     display: block;
@@ -105,11 +129,8 @@
 }
 
 .author__content {
-  display: table-cell;
-  vertical-align: top;
-  padding-left: 15px;
-  padding-right: 25px;
-  line-height: 1;
+  // Grid handles positioning on mobile
+  line-height: 1.3;
 
   @include breakpoint($large) {
     display: block;
@@ -158,13 +179,10 @@
 }
 
 .author__urls-wrapper {
-  position: relative;
-  display: table-cell;
-  vertical-align: middle;
+  // Grid handles positioning on mobile
   font-family: $sans-serif;
   z-index: 10;
-  position: relative;
-  cursor: pointer;
+  margin-top: 5px;
 
   li:last-child {
     a {
@@ -174,31 +192,51 @@
 
   @include breakpoint($large) {
     display: block;
+    margin-top: 0;
   }
 
+  // Hide "Links" button - show icons inline instead
   button {
-    margin-bottom: 0;
-
-    @include breakpoint($large) {
-      display: none;
-    }
+    display: none;
   }
 }
 
 .author__urls {
-  display: none;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 15px;
-  padding: 10px;
+  // Mobile: show as inline icon row
+  display: flex;
+  flex-direction: row;
+  gap: 0.75em;
+  position: relative;
+  margin: 0;
+  padding: 0;
   list-style-type: none;
-  border: 1px solid var(--global-border-color);
-  border-radius: $border-radius;
-  background: var(--global-bg-color);
-  z-index: -1;
-  box-shadow: 0 0 10px rgba(#000, 0.25);
+  border: 0;
+  background: transparent;
+  box-shadow: none;
   cursor: default;
+
+  // Hide text labels on mobile, show only icons
+  a {
+    font-size: 1.25em;
+    color: var(--global-text-color-light);
+
+    .icon-pad-right {
+      margin-right: 0;
+    }
+
+    &:hover {
+      color: var(--global-text-color);
+    }
+  }
+
+  // Hide link text on mobile
+  li:not(.author__desktop) a {
+    font-size: 0; // Hide text
+
+    i, svg {
+      font-size: 1rem; // Slightly smaller icons
+    }
+  }
 
   @include breakpoint($large) {
     display: block;
@@ -208,40 +246,28 @@
     border: 0;
     background: transparent;
     box-shadow: none;
-  }
 
-  &:before {
-    display: block;
-    content: "";
-    position: absolute;
-    top: -11px;
-    left: calc(50% - 10px);
-    width: 0;
-    border-style: solid;
-    border-width: 0 10px 10px;
-    border-color: var(--global-border-color) transparent;
-    z-index: 0;
+    a {
+      color: inherit; // Reset to default on desktop
+    }
 
-    @include breakpoint($large) {
-      display: none;
+    // Show full text on desktop
+    li:not(.author__desktop) a {
+      font-size: $type-size-5;
+
+      i, svg {
+        font-size: inherit;
+      }
+    }
+
+    a .icon-pad-right {
+      margin-right: 0.5em;
     }
   }
 
+  &:before,
   &:after {
-    display: block;
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: calc(50% - 10px);
-    width: 0;
-    border-style: solid;
-    border-width: 0 10px 10px;
-    border-color: #fff transparent;
-    z-index: 1;
-
-    @include breakpoint($large) {
-      display: none;
-    }
+    display: none;
   }
 
   li {
