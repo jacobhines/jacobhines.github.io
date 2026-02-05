@@ -19,4 +19,4 @@ Alongside my quantum physics research, I was involved in Stanford's optics commu
 * **Apple Biophotonics internship:** Developed an OCT-inspired sensing platform to measure optical path length distributions in scattering media, featuring an optical heterodyne modulation scheme compatible with the coherent detection of speckle-field signals.
 * **[Multispectral camera:](/projects/multispectral-camera)** Designed and built a low-cost multispectral camera that uses a high-resolution visible image to enhance a low-resolution thermal image. Developed a multispectral image registration algorithm with VIS+LWIR image fusion.
 
-Prior to Stanford, I studied physics at at UC Santa Barbara's [College of Creative Studies](https://ccs.ucsb.edu/), with an emphasis on original undergraduate research in the [Weld Lab](https://web.physics.ucsb.edu/~weld/index.php).
+Prior to Stanford, I studied physics at UC Santa Barbara's [College of Creative Studies](https://ccs.ucsb.edu/), with an emphasis on original undergraduate research in the [Weld Lab](https://web.physics.ucsb.edu/~weld/index.php).
