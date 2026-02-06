@@ -5,14 +5,14 @@
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
 
 <!-- Support for Mermaid -->
-<script type="module">
+{% raw %}<script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
     mermaid.initialize({startOnLoad:true, theme:'default'});
     await mermaid.run({querySelector:'code.language-mermaid'});
-</script>
+</script>{% endraw %}
 
 <!-- Open external links in new tabs -->
-<script>
+{% raw %}<script>
     document.addEventListener('DOMContentLoaded', function() {
         // Get all links
         var links = document.querySelectorAll('a');
@@ -29,6 +29,6 @@
             }
         });
     });
-</script>
+</script>{% endraw %}
 
 <!-- end custom footer snippets -->
