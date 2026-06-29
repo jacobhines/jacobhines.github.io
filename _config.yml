@@ -12,7 +12,7 @@ site_theme               : "default" # "default" or "air"
 title                    : "Jacob Hines"
 title_separator          : "-"
 name                     : &name "Jacob Hines"
-description              : &description "Camera Systems Architect at Apple. Former quantum physics researcher at Stanford."
+description              : &description "Systems Engineer at Waymo. Former camera systems architect at Apple and quantum physics researcher at Stanford."
 url                      : https://www.hines.dev
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "jacobhines/jacobhines.github.io"
@@ -24,9 +24,9 @@ author:
   # Biographic information
   avatar           : "jacob_hines_headshot.jpg"
   name             : "Jacob Hines"
-  bio              : "Camera Systems Architect at Apple"
+  bio              : "Systems Engineer at Waymo"
   location         : San Francisco, CA
-  employer         : Apple Inc.
+  employer         : Waymo
   email            : #
 
   linkedin         : "jacob-hines"

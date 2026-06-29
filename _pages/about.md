@@ -7,9 +7,11 @@ redirect_from:
   - /about.html
 ---
 
-I'm currently a Camera Systems Architect at Apple, combining highly optimized camera hardware solutions with state-of-the-art software to provide market-leading imaging experiences. I work at the intersection of optics, computer vision algorithms, and scientific programming, using data-driven analysis and simulation to guide camera design decisions.
+I'm currently a Systems Engineer at Waymo, focused on the multi-modal sensing and perception systems that power the Waymo Driver. I work at the intersection of sensor hardware and machine learning models, using data-driven analysis and simulation to guide the requirements and design tradeoffs behind safe real-world deployment.
 
-I was previously a PhD student and postdoctoral researcher at Stanford University, where I worked in the [Schleier-Smith Lab](https://sites.google.com/stanford.edu/sslab/) to develop new tools for quantum engineering with cold atoms and [Rydberg states](https://en.wikipedia.org/wiki/Rydberg_atom). I was supported by the NDSEG Fellowship and received my PhD in Applied Physics. Research highlights:
+Previously, I was a Camera Systems Architect at Apple, where I combined highly optimized camera hardware solutions with state-of-the-art software to provide market-leading imaging experiences. 
+
+Before that, I was a PhD student and postdoctoral researcher at Stanford University, where I worked in the [Schleier-Smith Lab](https://sites.google.com/stanford.edu/sslab/) to develop new tools for quantum engineering with cold atoms and [Rydberg states](https://en.wikipedia.org/wiki/Rydberg_atom). I was supported by the NDSEG Fellowship and received my PhD in Applied Physics. Research highlights:
 * **[Quantum-enhanced sensing:](https://doi.org/10.1103/PhysRevLett.131.063401)** Performed experimental demonstrations of spin squeezing in a system with finite-range interactions, enabling precision measurements beyond the standard quantum limit for atomic clocks and electromagnetic sensors.
 * **[Quantum simulation:](https://doi.org/10.1103/PhysRevLett.124.063601)** Demonstrated local and dynamical control of atomic interactions by optically coupling to Rydberg states, enabling experimental emulation of the transverse-field Ising model and observation of quantum phase transitions.
 * **[Quantum computing:](https://doi.org/10.1103/PRXQuantum.2.020319)** Proposed a physical implementation of Grover's search algorithm that encodes the NP-complete number partitioning problem in couplings to a central spin, providing quantum speedup without requiring prior knowledge of solutions.
